@@ -1,0 +1,96 @@
+.sliderContainer {
+  width: 100%;
+  //   max-width: 1200px;
+
+  padding: 20px 5rem;
+  margin-top: auto;
+  //   margin: 0 10rem;
+  z-index: 2;
+
+  .swiper-slide {
+    // max-width: 400px;
+    // margin-right: 80px;
+  }
+  // .sliderHeader {
+  //     display: flex;
+  //     justify-content: space-between;
+  //     align-items: center;
+  //     margin-bottom: 20px;
+  //     padding: 0 20px;
+  // }
+
+  // .slideCounter {
+  //     font-size: 16px;
+  //     color: #999;
+
+  //     .currentIndex {
+  //         font-weight: bold;
+  //         color: #333;
+  //     }
+  // }
+
+  //   .navigation {
+  //     display: flex;
+  //     gap: 10px;
+
+  //     .navButton {
+  //       background: none;
+  //       border: 1px solid #ccc;
+  //       border-radius: 50%;
+  //       width: 30px;
+  //       height: 30px;
+  //       display: flex;
+  //       justify-content: center;
+  //       align-items: center;
+  //       cursor: pointer;
+  //       font-size: 18px;
+  //       color: #555;
+  //       transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+
+  //       &:hover {
+  //         background-color: #f0f0f0;
+  //         border-color: #999;
+  //       }
+  //       &:active {
+  //         background-color: #e0e0e0;
+  //       }
+  //     }
+  //   }
+
+  //   .swiperCustom {
+  //     padding-bottom: 10px;
+
+  //
+  //     .swiper-button-prev,
+  //     .swiper-button-next {
+  //       display: none;
+  //     }
+  //   }
+
+  .swiperSlide {
+    max-width: 23rem;
+    margin-right: 80px;
+  }
+
+  .eventCard {
+    padding-right: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    .eventYear {
+      font-family: "Bebas Neue";
+      font-weight: 400;
+      font-size: 25px;
+      color: var(--blue);
+    }
+
+    .eventDescription {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--black-blue);
+      padding: 0;
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+}

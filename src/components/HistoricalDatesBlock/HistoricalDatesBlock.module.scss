@@ -1,0 +1,113 @@
+.main {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 700px; // Минимальная высота для блока
+  margin-left: 20rem;
+  // padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgb(66, 86, 122, 0.1);
+  overflow: hidden; // Важно для скрытия частей элементов, выходящих за границы
+  //   font-family: Arial, sans-serif; // Пример шрифта
+
+  .header {
+    margin-top: 10.4rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    // max-width: 1200px; // Максимальная ширина для заголовка
+    // padding: 0 50px; // Отступы по бокам
+    box-sizing: border-box;
+
+    .verticalLine {
+      width: 5px;
+      height: 120px;
+      background: linear-gradient(to bottom, #5558fa, #f55);
+      margin-right: 20px;
+    }
+
+    h1 {
+      max-width: 20rem;
+      padding-left: 3.4rem;
+      font-weight: 700;
+      font-size: 3.5em;
+      line-height: 120%;
+      color: #42567a;
+      text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .content {
+    position: relative;
+    width: 100%;
+    margin-top: 2.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    margin-bottom: 30px;
+  }
+
+  // Стили для фоновых линий
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: rgba(204, 204, 204, 0.5);
+    z-index: 0;
+  }
+
+  &::before {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+  }
+
+  &::after {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+  }
+}
+
+.yearsContainer {
+  width: 100%;
+  margin-left: 13.5rem;
+  display: flex;
+  gap: 5.9rem;
+  font-size: 12.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  .startYear {
+    color: var(--blue);
+  }
+
+  .endYear {
+    color: var(--pink);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    font-size: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .main {
+    margin-left: 1rem;
+  }
+  .yearsContainer {
+    width: 100%;
+    margin-left: 1rem;
+    display: flex;
+    gap: 5.9rem;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}

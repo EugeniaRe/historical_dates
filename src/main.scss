@@ -1,0 +1,37 @@
+@import url("./styles/colors.scss");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: "PT Sans", sans-serif;
+
+  background-color: #ffffff;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+@media (max-width: 640px) {
+  :root {
+    font-size: 12px;
+  }
+}
+@media (max-width: 480px) {
+  :root {
+    font-size: 10px;
+  }
+}
