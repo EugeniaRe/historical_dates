@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import CircleNavigation from "../CircleNavigation/CircleNavigation";
 import EventsSlider from "../EventsSlider/EventsSlider";
 import { TimeSegmentData } from "../../types/types";
 
@@ -85,6 +86,12 @@ const HistoricalDatesBlock: React.FC<HistoricalDatesBlockProps> = ({
             {currentEndYear}
           </span>
         </div>
+
+        <CircleNavigation
+          totalSegments={data.length}
+          activeIndex={activeIndex}
+          onSegmentClick={handleSegmentChange}
+        />
       </div>
 
       <EventsSlider events={currentSegment.events} />
