@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import CircleNavigation from "../CircleNavigation/CircleNavigation";
 import EventsSlider from "../EventsSlider/EventsSlider";
 import { TimeSegmentData } from "../../types/types";
+import SegmentSwitcher from "../SegmentSwitcher/SegmentSwitcher";
 
 import styles from "./HistoricalDatesBlock.module.scss";
 
@@ -12,7 +13,7 @@ interface HistoricalDatesBlockProps {
 const HistoricalDatesBlock: React.FC<HistoricalDatesBlockProps> = ({
   data,
 }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(5);
   const blockRef = useRef<HTMLDivElement>(null);
   const [currentStartYear, setCurrentStartYear] = useState(
     data[activeIndex].startYear
@@ -33,12 +34,13 @@ const HistoricalDatesBlock: React.FC<HistoricalDatesBlockProps> = ({
   }
 
   const handleSegmentChange = (index: number) => {
+    console.log(data[index].startYear, data[index].endYear);
     handleChangeYear(data[index].startYear, data[index].endYear);
     setActiveIndex(index);
   };
 
-  const startYearRef = useRef<HTMLSpanElement>(null);
-  const endYearRef = useRef<HTMLSpanElement>(null);
+  const startYearRef = useRef<HTMLDivElement>(null);
+  const endYearRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleChangeYear = (newStart: number, newEnd: number) => {
@@ -67,30 +69,34 @@ const HistoricalDatesBlock: React.FC<HistoricalDatesBlockProps> = ({
         if (intervalRef.current) clearInterval(intervalRef.current);
         setIsAnimating(false);
       }
-    }, 100);
+    }, 60);
   };
 
   return (
     <main className={styles.main} ref={blockRef}>
       <div className={styles.header}>
-        <div className={styles.verticalLine}></div>
-        <h1>Исторические даты</h1>
+        <div className={styles.vertical_line}></div>
+        <h1 className={styles.title}>Исторические даты</h1>
       </div>
 
       <div className={styles.content}>
-        <div className={styles.yearsContainer}>
-          <span ref={startYearRef} className={styles.startYear}>
+        <div className={styles.years_container}>
+          <div ref={startYearRef} className={styles.start_year}>
             {currentStartYear}
-          </span>
-          <span ref={endYearRef} className={styles.endYear}>
+          </div>
+          <div ref={endYearRef} className={styles.end_year}>
             {currentEndYear}
-          </span>
+          </div>
         </div>
-
         <CircleNavigation
-          totalSegments={data.length}
-          activeIndex={activeIndex}
-          onSegmentClick={handleSegmentChange}
+          current={activeIndex + 1}
+          total={data.length}
+          onChange={handleSegmentChange}
+        />
+        <SegmentSwitcher
+          current={activeIndex + 1}
+          total={data.length}
+          onChange={handleSegmentChange}
         />
       </div>
 

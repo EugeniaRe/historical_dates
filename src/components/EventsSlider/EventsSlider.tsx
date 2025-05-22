@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { Swiper as SwiperCore } from "swiper/types";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { EventData } from "../../types/types";
 
 import styles from "./EventsSlider.module.scss";
@@ -13,63 +13,69 @@ interface EventsSliderProps {
 }
 
 const EventsSlider: React.FC<EventsSliderProps> = ({ events }) => {
-  const swiperRef = useRef<SwiperCore | null>(null);
-
-  const handlePrev = () => {
-    swiperRef.current?.slidePrev();
-  };
-
-  const handleNext = () => {
-    swiperRef.current?.slideNext();
-  };
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+  const swiperRef = useRef<any>(null);
+  const navigationPrevRef = useRef(null);
+  const navigationNextRef = useRef(null);
 
   return (
-    <div className={styles.sliderContainer}>
-      {/* <div className={styles.sliderHeader}>
-        <div className={styles.slideCounter}>
-          <span className={styles.currentIndex}>01</span> /{" "}
-          <span className={styles.totalIndex}>0{events.length}</span>
-        </div>
-        <div className={styles.navigation}>
-          <button className={styles.navButton} onClick={handlePrev}>
-            &lt;
-          </button>
-          <button className={styles.navButton} onClick={handleNext}>
-            &gt;
-          </button>
-        </div>
-      </div> */}
+    <div className={styles.container}>
+      <div
+        ref={navigationPrevRef}
+        className={`${styles.prev_button} ${isBeginning ? styles.hidden : ""}`}
+      ></div>
+
       <Swiper
-        modules={[Navigation]}
+        ref={swiperRef}
+        modules={[Navigation, Pagination]}
         spaceBetween={30}
-        slidesPerView={3}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        className={styles.swiperCustom}
-        autoHeight={true}
-        // breakpoints={{
-        //   320: {
-        //     slidesPerView: 1,
-        //     spaceBetween: 10,
-        //   },
-        //   768: {
-        //     slidesPerView: 2,
-        //     spaceBetween: 20,
-        //   },
-        //   1024: {
-        //     slidesPerView: 3,
-        //     spaceBetween: 30,
-        //   },
-        // }}
+        slidesPerView={"auto"}
+        centeredSlides={false}
+        pagination={{
+          type: "bullets",
+          clickable: true,
+          el: `.${styles.mobile_pagination}`,
+        }}
+        navigation={{
+          nextEl: navigationNextRef.current,
+          prevEl: navigationPrevRef.current,
+        }}
+        onSlideChange={(swiper) => {
+          setIsBeginning(swiper.isBeginning);
+          setIsEnd(swiper.isEnd);
+        }}
+        onInit={(swiper) => {
+          swiper.navigation.init();
+          swiper.navigation.update();
+        }}
+        breakpoints={{
+          0: {
+            slidesPerView: 1.5,
+            centeredSlides: false,
+            spaceBetween: 0,
+          },
+          1024: {
+            slidesPerView: 3,
+            centeredSlides: false,
+            spaceBetween: 30,
+          },
+        }}
       >
         {events.map((event, index) => (
-          <SwiperSlide key={index} className={styles.swiperSlide}>
-            <div className={styles.eventCard}>
-              <h3 className={styles.eventYear}>{event.year}</h3>
-              <p className={styles.eventDescription}>{event.description}</p>
+          <SwiperSlide key={index}>
+            <div className={styles.slide_content}>
+              <h3 className={styles.year}>{event.year}</h3>
+              <p className={styles.description}>{event.description}</p>
             </div>
           </SwiperSlide>
         ))}
+        <div className={styles.mobile_pagination}></div>
       </Swiper>
+      <div
+        ref={navigationNextRef}
+        className={`${styles.next_button} ${isEnd ? styles.hidden : ""}`}
+      ></div>
     </div>
   );
 };

@@ -1,75 +1,11 @@
-.circleContainer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px; // Ширина контейнера для круга
-  height: 600px; // Высота контейнера для круга
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none; // Позволяет кликать сквозь контейнер, только на точки
-
-  .circle {
-    position: relative;
-    width: 500px; // Размер самого круга, по которому будут располагаться точки
-    height: 500px;
-    border: 1px dashed #ccc; // Пример пунктирной окружности
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none; // Сквозь круг можно кликать
-    z-index: 1;
-  }
-
-  .dot {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background-color: #d3d3d3;
-    border-radius: 50%;
-    cursor: pointer;
-    transform: translate(
-      -50%,
-      -50%
-    ); // Центрирование точки по рассчитанным координатам
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    pointer-events: all; // Точки кликабельны
-
-    &.active {
-      background-color: #f55; // Активный цвет точки
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-  }
-
-  .lineH,
-  .lineV {
-    position: absolute;
-    background-color: rgba(204, 204, 204, 0.5); // Цвет линий
-    z-index: 0;
-  }
-
-  .lineH {
-    width: 100%;
-    height: 1px;
-  }
-
-  .lineV {
-    width: 1px;
-    height: 100%;
-  }
-}
-
 .container {
   position: absolute;
-  top: -47%;
+  top: -27.5%;
+  left: 31.5%;
 
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   justify-content: center;
-  //   min-height: 100vh;
+  @media (max-width: 480px) {
+    display: none;
+  }
 }
 
 .circle {
@@ -79,8 +15,7 @@
 
   border: 1px solid rgb(66, 86, 122, 0.2);
   border-radius: 50%;
-  transition: transform 1s ease;
-  // className="relative w-80 h-80 rounded-full border-4 border-blue-500 flex items-center justify-center"
+  transition: transform 1s ease-in-out;
 }
 
 .button {
@@ -90,88 +25,7 @@
 
   position: absolute;
   border-radius: 50%;
-  background-color: #ffffff;
   border: 1px solid rgb(66, 86, 122, 0.5);
   transition: all 0.3s ease-in-out;
   transform-origin: "center";
 }
-
-// .rotating_container {
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   transition: transform 1000ms ease-in-out;
-
-//   // className="absolute inset-0 flex justify-center items-center transition-transform duration-500 ease-in-out"
-// }
-
-// .button_wrapper {
-//   position: absolute;
-// }
-
-// .dot {
-//   position: absolute;
-//   width: 6px;
-//   height: 6px;
-//   border: none;
-//   background-color: var(--black-blue);
-//   font-size: 0;
-//   border-radius: 50%;
-//   z-index: 9999;
-
-//   // &.active,
-//   // &:hover {
-//   //   font-size: 1rem;
-//   //   width: 54px;
-//   //   height: 54px;
-//   //   background-color: #ffffff;
-//   //   border: 1px solid rgb(48, 62, 88, 0.5);
-//   // }
-//   .button_wrapper {
-//     position: relative;
-
-//     .button {
-//       position: absolute;
-//       width: 6px;
-//       height: 6px;
-//       border: none;
-//       background-color: var(--black-blue);
-//       font-size: 0;
-//       border-radius: 50%;
-//       &:hover {
-//         font-size: 1rem;
-//         width: 54px;
-//         height: 54px;
-//         background-color: #ffffff;
-//         border: 1px solid rgb(48, 62, 88, 0.5);
-//       }
-//     }
-//   }
-
-//   //className={`absolute w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold shadow-md
-// }
-
-// .menuButton {
-//   position: absolute;
-//   //   width: 5px;
-//   //   height: 5px;
-//   background-color: #3b82f6;
-//   color: white;
-//   border-radius: 50%;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   transition: background-color 200ms;
-
-//   &:hover {
-//     background-color: #2563eb;
-//   }
-
-//   &:disabled {
-//     opacity: 0.7;
-//     cursor: not-allowed;
-//   }
-// }
-
-// .constainer
-// min-h-screen flex flex-col justify-center items-center bg-gray-50

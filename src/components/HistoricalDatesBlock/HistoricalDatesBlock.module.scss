@@ -1,15 +1,17 @@
 .main {
   position: relative;
-  width: 100%;
   max-width: 1440px;
   min-height: 700px;
   margin-left: 20rem;
-  // padding: 50px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid rgb(66, 86, 122, 0.1);
   overflow: hidden;
+
+  @media (max-width: 480px) {
+    border: none;
+  }
 
   .header {
     margin-top: 10.4rem;
@@ -18,21 +20,36 @@
     align-items: center;
     box-sizing: border-box;
 
-    .verticalLine {
+    @media (max-width: 480px) {
+      margin-top: 5.7rem;
+    }
+
+    .vertical_line {
       width: 5px;
       height: 120px;
       background: linear-gradient(to bottom, #5558fa, #f55);
       margin-right: 20px;
+
+      @media (max-width: 480px) {
+        display: none;
+      }
     }
 
-    h1 {
+    .title {
       max-width: 20rem;
       padding-left: 3.4rem;
       font-weight: 700;
-      font-size: 3.5em;
+      font-size: 3.5rem;
       line-height: 120%;
       color: #42567a;
       text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+      @media (max-width: 480px) {
+        max-width: 10rem;
+        padding-left: 1rem;
+
+        font-size: 2rem;
+      }
     }
   }
 
@@ -41,69 +58,74 @@
     width: 100%;
     margin-top: 2.2rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
+    flex-direction: column;
     margin-bottom: 30px;
+
+    @media (max-width: 480px) {
+      margin-bottom: 0;
+    }
   }
 
-  // Стили для фоновых линий
   &::before,
   &::after {
     content: "";
     position: absolute;
     background-color: rgba(204, 204, 204, 0.5);
-    z-index: 0;
   }
 
   &::before {
-    top: 58%;
+    top: 30rem;
     left: 0;
     right: 0;
     height: 1px;
   }
 
   &::after {
-    left: 50%;
     top: 0;
     bottom: 0;
     width: 1px;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 }
 
-.yearsContainer {
-  width: 100%;
-  margin-left: 13.5rem;
+.years_container {
+  align-self: center;
+  margin-left: -2.4rem;
+  margin-bottom: 6.3rem;
   display: flex;
   gap: 5.9rem;
   font-size: 12.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 
-  .startYear {
+  @media (max-width: 480px) {
+    margin-left: 1.5rem;
+    margin-top: 3.4rem;
+    font-size: 5.5rem;
+  }
+
+  .start_year {
     color: var(--blue);
   }
 
-  .endYear {
+  .end_year {
     color: var(--pink);
   }
 }
 
-@media (max-width: 640px) {
-  :root {
-    font-size: 12px;
-  }
-}
 @media (max-width: 480px) {
   .main {
     margin-left: 1rem;
   }
-  .yearsContainer {
+  .years_container {
     width: 100%;
     margin-left: 1rem;
     display: flex;
-    gap: 5.9rem;
-    font-size: 5rem;
+    gap: 4.9rem;
+    font-size: 5.5rem;
     font-weight: 700;
     letter-spacing: -0.02em;
   }

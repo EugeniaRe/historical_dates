@@ -1,96 +1,127 @@
-.sliderContainer {
+.container {
   width: 100%;
-  //   max-width: 1200px;
+  padding: 1.6rem 5rem;
+  position: relative;
+}
 
-  padding: 20px 5rem;
-  margin-top: auto;
-  //   margin: 0 10rem;
-  z-index: 2;
+.slide_content {
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 
-  .swiper-slide {
-    // max-width: 400px;
-    // margin-right: 80px;
-  }
-  // .sliderHeader {
-  //     display: flex;
-  //     justify-content: space-between;
-  //     align-items: center;
-  //     margin-bottom: 20px;
-  //     padding: 0 20px;
-  // }
+  .year {
+    font-family: "Bebas Neue";
+    font-weight: 400;
+    font-size: 25px;
+    color: var(--blue);
 
-  // .slideCounter {
-  //     font-size: 16px;
-  //     color: #999;
-
-  //     .currentIndex {
-  //         font-weight: bold;
-  //         color: #333;
-  //     }
-  // }
-
-  //   .navigation {
-  //     display: flex;
-  //     gap: 10px;
-
-  //     .navButton {
-  //       background: none;
-  //       border: 1px solid #ccc;
-  //       border-radius: 50%;
-  //       width: 30px;
-  //       height: 30px;
-  //       display: flex;
-  //       justify-content: center;
-  //       align-items: center;
-  //       cursor: pointer;
-  //       font-size: 18px;
-  //       color: #555;
-  //       transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-
-  //       &:hover {
-  //         background-color: #f0f0f0;
-  //         border-color: #999;
-  //       }
-  //       &:active {
-  //         background-color: #e0e0e0;
-  //       }
-  //     }
-  //   }
-
-  //   .swiperCustom {
-  //     padding-bottom: 10px;
-
-  //
-  //     .swiper-button-prev,
-  //     .swiper-button-next {
-  //       display: none;
-  //     }
-  //   }
-
-  .swiperSlide {
-    max-width: 23rem;
-    margin-right: 80px;
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
   }
 
-  .eventCard {
-    padding-right: 40px;
+  .description {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--black-blue);
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .container {
+    padding: 1.6rem 1rem;
+  }
+
+  :global(.swiper-slide-next) {
+    opacity: 0.5;
+  }
+
+  .slide_content {
+    padding-right: 20px;
+    gap: 1.3rem;
+  }
+
+  .mobile_pagination {
+    position: relative;
+    margin-top: 6.8rem;
     display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    .eventYear {
-      font-family: "Bebas Neue";
-      font-weight: 400;
-      font-size: 25px;
-      color: var(--blue);
+    justify-content: center;
+    gap: 2px;
+
+    :global(.swiper-pagination-bullet) {
+      width: 6px;
+      height: 6px;
+      background-color: var(--black-blue);
+      border-radius: 50%;
+      opacity: 0.4;
+      cursor: pointer;
     }
 
-    .eventDescription {
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--black-blue);
-      padding: 0;
-      margin: 0;
-      line-height: 1.5;
+    :global(.swiper-pagination-bullet-active) {
+      opacity: 1;
+    }
+  }
+
+  .prev_button,
+  .next_button {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile_pagination {
+    display: none !important;
+  }
+
+  .prev_button,
+  .next_button {
+    position: absolute;
+    top: 32%;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 15px rgba(56, 119, 238, 0.1);
+    z-index: 1000;
+    cursor: pointer;
+
+    &.hidden {
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-top: 2px solid var(--blue);
+      border-right: 2px solid var(--blue);
+    }
+  }
+
+  .prev_button {
+    left: 1.8%;
+
+    &::after {
+      transform: rotate(-135deg);
+    }
+  }
+
+  .next_button {
+    right: 2.8%;
+
+    &::after {
+      transform: rotate(45deg);
     }
   }
 }
